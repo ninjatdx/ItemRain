@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "itemrain:trophy"
+    },
+    "title": {
+    "translate": "advancements.itemrain.trophy.title"
+    },
+    "description": {
+    "translate": "advancements.itemrain.trophy.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "itemrain:root",
+  "criteria": {
+    "trophy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "itemrain:trophy"
+          }
+        ]
+      }
+    }
+  }
+}
