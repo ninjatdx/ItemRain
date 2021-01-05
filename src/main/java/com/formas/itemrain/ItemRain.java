@@ -20,7 +20,8 @@ public class ItemRain
 {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "itemrain";
-    public static GameRules.RuleKey<GameRules.BooleanValue> ITEM_RAIN; 
+    public static GameRules.RuleKey<GameRules.BooleanValue> ITEM_RAIN;
+    public static GameRules.RuleKey<GameRules.BooleanValue> MODDED_ITEMS;
     public static ItemRain instance;
 
     public ItemRain() {
@@ -28,7 +29,8 @@ public class ItemRain
     	modEventBus.addListener(this::setup);
     	modEventBus.addListener(this::doClientStuff);
     	
-    	ITEM_RAIN = GameRules.register("itemRain", GameRules.BooleanValue.create(true));
+    	ITEM_RAIN = GameRules.register("itemRain", GameRules.BooleanValue.create(false));
+    	MODDED_ITEMS = GameRules.register("rainModItems", GameRules.BooleanValue.create(true));
     	ItemInit.ITEMS.register(modEventBus);
     	
         MinecraftForge.EVENT_BUS.register(this);

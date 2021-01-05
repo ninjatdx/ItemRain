@@ -45,7 +45,8 @@ public class ItemRainEvent
 					Items.KNOWLEDGE_BOOK,
 					Items.ENCHANTED_BOOK
 				};
-		boolean canSpawn = !Arrays.stream(blockedItems).anyMatch(spawnItem::equals);
+		boolean isVanilla = spawnItem.getCreatorModId(new ItemStack(spawnItem)) == "minecraft" || spawnItem.getCreatorModId(new ItemStack(spawnItem)) == ItemRain.MOD_ID;
+		boolean canSpawn = !Arrays.stream(blockedItems).anyMatch(spawnItem::equals) && world.getGameRules().getBoolean(ItemRain.MODDED_ITEMS) ? true : isVanilla;
 		int offsetX = world.rand.nextInt(8 + 8) - 8;
 		int offsetZ = world.rand.nextInt(8 + 8) - 8;
 		if(world.getGameRules().getBoolean(ItemRain.ITEM_RAIN))
