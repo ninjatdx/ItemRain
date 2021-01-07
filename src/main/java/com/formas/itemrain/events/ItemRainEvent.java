@@ -3,6 +3,7 @@ package com.formas.itemrain.events;
 import java.util.Arrays;
 
 import com.formas.itemrain.ItemRain;
+import com.formas.itemrain.init.GameRuleInit;
 
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.item.TNTEntity;
@@ -27,7 +28,6 @@ public class ItemRainEvent
 		PlayerEntity player = event.player;
 		World world = event.player.world;
 		Item[] items = ForgeRegistries.ITEMS.getValues().toArray(new Item[ForgeRegistries.ITEMS.getValues().size()]);
-		
 		Item spawnItem = items[world.rand.nextInt(items.length)];
 		Item[] blockedItems = new Item[] 
 				{
@@ -46,10 +46,15 @@ public class ItemRainEvent
 					Items.ENCHANTED_BOOK
 				};
 		boolean isVanilla = spawnItem.getCreatorModId(new ItemStack(spawnItem)) == "minecraft" || spawnItem.getCreatorModId(new ItemStack(spawnItem)) == ItemRain.MOD_ID;
-		boolean canSpawn = !Arrays.stream(blockedItems).anyMatch(spawnItem::equals) && world.getGameRules().getBoolean(ItemRain.MODDED_ITEMS) ? true : isVanilla;
+		boolean canSpawn = !Arrays.stream(blockedItems).anyMatch(spawnItem::equals);
 		int offsetX = world.rand.nextInt(8 + 8) - 8;
 		int offsetZ = world.rand.nextInt(8 + 8) - 8;
-		if(world.getGameRules().getBoolean(ItemRain.ITEM_RAIN))
+		
+		if(!world.getGameRules().getBoolean(GameRuleInit.MODDED_ITEMS) && !isVanilla)
+		{
+			canSpawn = false;
+		}
+		if(world.getGameRules().getBoolean(GameRuleInit.ITEM_RAIN))
 		{
 			if(canSpawn)
 			{
@@ -81,7 +86,7 @@ public class ItemRainEvent
 					}
 				}
 			} else {
-				if(world.rand.nextInt(40) == 0)
+				if(world.rand.nextInt(20) == 0)
 				{
 					world.addEntity(new TNTEntity(world, player.getPosX(), player.getPosY() + 40, player.getPosZ(), null));
 				}
