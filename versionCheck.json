@@ -2,8 +2,12 @@
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/item-rain",
   "1.15.2": {
     "1.0.0": "Initial version;",
+<<<<<<< HEAD
 	"1.1.0": "-Added gamerule to activate and deactivate modded items raining among vanilla's items;\n-Added a version check system;",
 	"1.2.0": "-Improved the modded item rain flag;\n-Added the /ircfg command to fix issues on changing the gamerules on Dedicated Servers;"
+=======
+    "1.1.0": "-Added gamerule to activate and deactivate modded items raining among vanilla's items;\n-Added a version check system;"
+>>>>>>> 2ecea6a1ae81861fc4d015ec799cf82d05c47988
   },
   "promos": {
     "1.15.2-latest": "1.2.0",
